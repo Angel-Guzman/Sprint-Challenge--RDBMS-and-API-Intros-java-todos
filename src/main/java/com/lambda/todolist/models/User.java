@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends Auditable
+public class User extends Auditable implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +27,7 @@ public class User extends Auditable
     private String primaryemail;
 
     @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties(value = "users")
+    @JsonIgnoreProperties(value = "userid")
     private List<Todos> todos = new ArrayList<>();
 
     public User()

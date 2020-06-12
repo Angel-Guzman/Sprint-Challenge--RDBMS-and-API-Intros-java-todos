@@ -57,11 +57,10 @@ public class UserServiceImpl implements UserService
         newUser.setPassword(user.getPassword());
 
         newUser.getTodos().clear();
-//        for (Todos t : user.getTodos())
-//        {
-//            Todos newTodo = new Todos(t.getUserid(), t.getDescription());
-//            newUser.getTodos().add(newTodo);
-//        }
+        for (Todos t : user.getTodos())
+        {
+            newUser.getTodos().add(new Todos(newUser, t.getDescription()));
+        }
 
         return userrepos.save(newUser);
     }
