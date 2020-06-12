@@ -72,10 +72,4 @@ public class UserServiceImpl implements UserService
                 .orElseThrow(() -> new EntityNotFoundException("User id " + id + " Not Found! "));
         userrepos.deleteById(id);
     }
-
-    @Override
-    public User update(User user, long id)
-    {
-        return null;
-    }
 }
