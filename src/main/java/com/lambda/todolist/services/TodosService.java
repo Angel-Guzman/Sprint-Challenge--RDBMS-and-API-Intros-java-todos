@@ -6,5 +6,5 @@ public interface TodosService
 {
     Todos save(Todos todo);
 
-//    Todos update(Todos todo, long id);
+    Todos update(Todos todo, long id);
 }

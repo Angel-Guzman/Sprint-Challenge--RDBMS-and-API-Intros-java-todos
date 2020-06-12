@@ -35,9 +35,19 @@ public class TodosServiceImpl implements TodosService
         return todosrepos.save(newTodo);
     }
 
-//    @Override
-//    public Todos update(Todos todo, long id)
-//    {
-//        return null;
-//    }
+    @Override
+    public Todos update(Todos todo, long id)
+    {
+        Todos currentTodo = todosrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Todo " + id + " Not Found! "));
+
+
+
+        if (todo.getDescription() != null)
+        {
+            currentTodo.setDescription(todo.getDescription());;
+        }
+
+        return todosrepos.save(currentTodo);
+    }
 }

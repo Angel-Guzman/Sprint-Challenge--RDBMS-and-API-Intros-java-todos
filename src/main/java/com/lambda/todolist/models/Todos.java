@@ -3,11 +3,10 @@ package com.lambda.todolist.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "todos")
-public class Todos extends Auditable implements Serializable
+public class Todos extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

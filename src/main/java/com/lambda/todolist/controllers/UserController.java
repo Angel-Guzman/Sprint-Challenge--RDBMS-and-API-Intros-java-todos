@@ -1,6 +1,9 @@
 package com.lambda.todolist.controllers;
 
+import com.lambda.todolist.models.Todos;
 import com.lambda.todolist.models.User;
+import com.lambda.todolist.repository.TodosRepository;
+import com.lambda.todolist.services.TodosService;
 import com.lambda.todolist.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +23,9 @@ public class UserController
 {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TodosRepository todosrepos;
 
     @GetMapping(value = "/users", produces = {"application/json"})
     public ResponseEntity<?> listAllUsers()
@@ -58,5 +64,11 @@ public class UserController
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
+//    @GetMapping(value = "/users/todos", produces = {"application/json"})
+//    public ResponseEntity<?> listAllTodos()
+//    {
+//        List<Todos> allTodos = todosS.findAll();
+//                return new ResponseEntity<>(allTodos, HttpStatus.OK);
+//    }
 
 }

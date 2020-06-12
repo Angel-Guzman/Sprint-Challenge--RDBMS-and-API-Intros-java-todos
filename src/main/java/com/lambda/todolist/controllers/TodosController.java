@@ -43,4 +43,11 @@ public class TodosController
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
+
+    @PatchMapping(value = "/todo/{todoid}")
+    public ResponseEntity<?> updateTodo(@RequestBody Todos updateTodo, @PathVariable long todoid)
+    {
+        todosService.update(updateTodo, todoid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
