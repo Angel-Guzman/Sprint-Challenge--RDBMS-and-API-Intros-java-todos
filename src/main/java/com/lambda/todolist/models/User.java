@@ -18,7 +18,7 @@ public class User extends Auditable
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -88,5 +88,17 @@ public class User extends Auditable
     public void setTodos(List<Todos> todos)
     {
         this.todos = todos;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", primaryemail='" + primaryemail + '\'' +
+                ", todos=" + todos +
+                '}';
     }
 }

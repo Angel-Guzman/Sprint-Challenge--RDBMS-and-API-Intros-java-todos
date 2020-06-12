@@ -1,6 +1,7 @@
 package com.lambda.todolist.services;
 
 
+import com.lambda.todolist.models.Todos;
 import com.lambda.todolist.models.User;
 import com.lambda.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,26 @@ public class UserServiceImpl implements UserService
     @Override
     public User save(User user)
     {
-        return null;
+        User newUser = new User();
+
+        if (user.getUserid() != 0)
+        {
+            userrepos.findById(user.getUserid())
+                    .orElseThrow(() -> new EntityNotFoundException("User id " + user.getUserid() + " Not Found! "));
+            newUser.setUserid(user.getUserid());
+        }
+
+        newUser.setUserid(user.getUserid());
+        newUser.setUsername(user.getUsername());
+        newUser.setPrimaryemail(user.getPrimaryemail());
+
+//        newUser.getTodos().clear();
+//        for (Todos t : user.getTodos())
+//        {
+//            Todos newTodo = new Todos(t.getTodoid(), t.getDescription(), t.ge)
+//        }
+
+        return userrepos.save(newUser);
     }
 
     @Override
