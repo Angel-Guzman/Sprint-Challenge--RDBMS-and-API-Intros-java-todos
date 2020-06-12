@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -20,13 +22,20 @@ public class UserServiceImpl implements UserService
     @Override
     public List<User> findAll()
     {
-        return null;
+        List<User> list = new ArrayList<>();
+
+        userrepos.findAll()
+                .iterator()
+                .forEachRemaining(list::add);
+
+        return list;
     }
 
     @Override
-    public User findUserById(long id)
+    public User findUserById(long id) throws EntityNotFoundException
     {
-        return null;
+        return userrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User id " + id + " Not Found! "));
     }
 
     @Override
@@ -38,7 +47,9 @@ public class UserServiceImpl implements UserService
     @Override
     public void delete(long id)
     {
-
+        userrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User id " + id + " Not Found! "));
+        userrepos.deleteById(id);
     }
 
     @Override
