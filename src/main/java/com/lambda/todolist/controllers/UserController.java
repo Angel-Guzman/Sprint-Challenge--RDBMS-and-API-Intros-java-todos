@@ -64,11 +64,10 @@ public class UserController
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-//    @GetMapping(value = "/users/todos", produces = {"application/json"})
-//    public ResponseEntity<?> listAllTodos()
-//    {
-//        List<Todos> allTodos = todosS.findAll();
-//                return new ResponseEntity<>(allTodos, HttpStatus.OK);
-//    }
+    @GetMapping(value = "/users/todos", produces = {"application/json"})
+    public ResponseEntity<?> listAllTodos()
+    {
+        return new ResponseEntity<>(userService.getCountUserTodos(), HttpStatus.OK);
+    }
 
 }

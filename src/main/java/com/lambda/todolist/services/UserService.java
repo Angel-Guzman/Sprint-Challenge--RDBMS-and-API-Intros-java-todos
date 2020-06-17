@@ -1,6 +1,7 @@
 package com.lambda.todolist.services;
 
 import com.lambda.todolist.models.User;
+import com.lambda.todolist.views.UserTodosCount;
 
 import java.util.List;
 
@@ -13,5 +14,7 @@ public interface UserService
     User save(User user);
 
     void delete(long id);
+
+    List<UserTodosCount> getCountUserTodos();
 
 }

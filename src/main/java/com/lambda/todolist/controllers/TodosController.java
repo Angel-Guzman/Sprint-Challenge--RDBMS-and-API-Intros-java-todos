@@ -31,7 +31,7 @@ public class TodosController
     {
         User user = usersrepo.findById(userid).orElseThrow(() -> new EntityNotFoundException("User " + userid + " Not Found! "));
         newtodo.setTodoid(0);
-        newtodo.setUserid(user);
+        newtodo.setUser(user);
         todosService.save(newtodo);
 
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -45,9 +45,9 @@ public class TodosController
     }
 
     @PatchMapping(value = "/todo/{todoid}")
-    public ResponseEntity<?> updateTodo(@RequestBody Todos updateTodo, @PathVariable long todoid)
+    public ResponseEntity<?> updateTodo(@PathVariable long todoid)
     {
-        todosService.update(updateTodo, todoid);
+        todosService.update(todoid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

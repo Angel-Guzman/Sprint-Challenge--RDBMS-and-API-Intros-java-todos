@@ -3,6 +3,8 @@ package com.lambda.todolist.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.util.Date;
 
 @Entity
 @Table(name = "todos")
@@ -15,23 +17,25 @@ public class Todos extends Auditable
     @Column(nullable = false)
     private String description;
 
-    // come back and default to false for all new todos????
+
     private boolean completed;
 
     @ManyToOne
     @JoinColumn(name = "userid", nullable = false)
     @JsonIgnoreProperties(value = "todos")
-    private User userid;
+    private User user;
 
     public Todos()
     {
     }
 
-    public Todos(User userid, String description)
+    public Todos(User user, String description)
     {
-        this.userid = userid;
+        this.user = user;
         this.description = description;
     }
+
+    public Date getCreatedDate() { return createddate; }
 
     public long getTodoid()
     {
@@ -63,13 +67,13 @@ public class Todos extends Auditable
         this.completed = completed;
     }
 
-    public User getUserid()
+    public User getUser()
     {
-        return userid;
+        return user;
     }
 
-    public void setUserid(User userid)
+    public void setUser(User user)
     {
-        this.userid = userid;
+        this.user = user;
     }
 }

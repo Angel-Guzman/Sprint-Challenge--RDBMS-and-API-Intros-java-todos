@@ -25,8 +25,8 @@ public class User extends Auditable
     @Column(nullable = false, unique = true)
     private String primaryemail;
 
-    @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties(value = "userid")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
     private List<Todos> todos = new ArrayList<>();
 
     public User()
